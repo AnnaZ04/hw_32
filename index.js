@@ -12,13 +12,15 @@ body.appendChild(results);
 
 const apikey = '86686340';
 
-input.addEventListener('change', async(e)=>{
+input.addEventListener('input', async(e)=>{
     const query = e.target.value;
+    if (query.length < 3) return;
+
 if (!query) {
     return;
 }
 try{
-const response = await fetch (`http://www.omdbapi.com/?s=${query}&apikey=${apikey}`)
+const response = await fetch (`https://www.omdbapi.com/?s=${query}&apikey=${apikey}`)
     const data= await response.json();
 if(data.Response==='True'){
     displayMovies(data.Search);
